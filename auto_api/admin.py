@@ -9,6 +9,7 @@ from .models import Article, Person, Post
 
 class ArticleAdmin(admin.ModelAdmin):
     list_display = ('title', 'pub_date', 'update_time', )
+
     def save_model(self, request, obj, form, change):
         '''
         修改保存时的一些操作，可以检查用户，保存的内容等，比如保存时加上添加人
@@ -57,8 +58,6 @@ class PersonAdmin(admin.ModelAdmin):
         return queryset, use_distinct
 
 
-
-
 class MyModleAdmin(admin.ModelAdmin):
     def get_queryset(self, request):
         '''
@@ -72,6 +71,7 @@ class MyModleAdmin(admin.ModelAdmin):
             return qs
         else:
             return qs.filter(author=request.user)
+
 
 class PostAdmin(admin.ModelAdmin):
     list_display = ('title', 'slug', 'author', 'publish','status')
